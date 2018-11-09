@@ -1,0 +1,6 @@
+Lav først rep på github.
+Kopier og kør de øverste(det øverste sekment) linjer, like 6 stykker.
+F1: stage all commits.
+git add *
+git commit -m "tst"
+git push 
