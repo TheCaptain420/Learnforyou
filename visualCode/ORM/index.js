@@ -3,7 +3,7 @@ const sequelize = new Sequelize('mysql', 'root', '1234', {
 
     /*
     BRUGERNAVN TIL SQL = root 
-    PASSWORD TIL SQL = 1234 
+    PASSWORD TIL SQL  = 1234 
     */
   host: 'localhost',
   dialect: 'mysql',
