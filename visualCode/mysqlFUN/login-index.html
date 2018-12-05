@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+    <h1>TSM</h1>
+    <input id="username">
+    <input id="password">
+
+    <button onclick="opretBruger()">opretBruger</button>
+    <button onclick="hentBruger()">Hent bruger</button>
+    <script>
+        
+        //CTRL + SHIFT + I får alt til at se pænt ud.
+        function opretBruger() {
+            var usernames = document.getElementById("username").value+"";
+            console.log(usernames);
+            var passs =  document.getElementById("password").value+"";
+            console.log(passs) 
+
+            var params = 'brugernavn='+usernames+'&password='+passs+'';
+
+
+            console.log("knappen virker");
+            console.log("username: " + document.getElementById("username").value)
+
+            console.log("pass: " + document.getElementById("password").value)
+
+            //Laver http request, den som get'er fra api'en.
+            var xmlhttp = new XMLHttpRequest();
+            
+
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("virket")
+                    console.log("response"+this.response);
+                }
+            };
+
+            xmlhttp.open("POST", "http://localhost:8080/opret", true);
+            xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp.send(params);
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

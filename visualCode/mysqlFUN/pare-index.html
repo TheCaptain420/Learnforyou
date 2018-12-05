@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <style>
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: gray;
+}
+    </style>
+    <script src="main.js"></script>
+</head>
+<body>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <button onclick="opretpare()">opret pære</button>
+    <button onclick="showpares()">Vis pærer</button>
+    <table>
+        
+        <ul id="liste"></ul>
+    </table>
+
+    <script>
+        function opretpare(){
+            console.log("knap virker");/*
+            var params = 'tsm=lel'
+            var xmlhttp = new XMLHttpRequest();
+            
+
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("virket")
+                    console.log("response"+this.response);
+                }
+            };
+
+            xmlhttp.open("POST", "http://localhost:8080/opret", true);
+            xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp.send(params);
+        */
+        }
+        
+        function showpares(){
+            console.log("knappen virker");
+            var sender;
+            var xmlhttp = new XMLHttpRequest();
+            
+
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("virket")
+                    console.log("response"+this.response);
+                     var obj = JSON.parse(this.response);
+                     console.log("leng= "+obj.length)
+                     
+                     var htmlTilHEADERpaaTable = "<tr><th>id</th><th>farve</th></tr>"
+                     $('#liste').append($(htmlTilHEADERpaaTable));
+
+                    for (let index = 0; index < obj.length; index++) {
+                        var start = '<tr>';
+                        var id = '<td>id nr: '+obj[index].id+"</td>";
+                        var farve = '<td> lyser farven <span style="color: '+obj[index].farve+'">'+obj[index].farve+'</span> </td>'
+                        var slut = '</p> </tr>'
+                        $('#liste').append($(start+id+farve+slut));
+                       // $('#liste').append($('<p>id nr: '+ obj[index].id+' lyser farven <span style="color: '+obj[index].farve+'">'+obj[index].farve+'</span></p><br>'));
+
+                    }
+
+
+                }
+            };
+
+            xmlhttp.open("GET", "http://localhost:8080/hent", true);
+            xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp.send();
+        }
+
+
+        
+        </script>
+</body>
+</html>
